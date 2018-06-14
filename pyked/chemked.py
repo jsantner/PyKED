@@ -689,7 +689,6 @@ class DataPoint(object):
                     filename = hist['values']['filename']
                     if not isabs(filename):
                         filename = join(directory, filename)
-                    print(filename)
                     values = np.genfromtxt(filename, delimiter=',')
 
                 time_history = TimeHistory(
