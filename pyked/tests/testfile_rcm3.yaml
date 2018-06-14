@@ -62,8 +62,8 @@ datapoints:
           units: cm3
           column: 1
         uncertainty:  
-          uncertainty-type: relative
-          value: 0.01
+            type: relative
+            value: 0.01
         values:
           filename: rcm_history.csv 
 ...
