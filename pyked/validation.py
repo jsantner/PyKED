@@ -283,7 +283,7 @@ class OurValidator(Validator):
             values = value[0].split()
             if any([temp in values for temp in
                     ['degC', 'degF', 'celsius', 'fahrenheit']]):
-                value_alt = [float(values[0])] + ''.join(values[1:])
+                value_alt = [float(values[0])] + [''.join(values[1:])]
                 quantity = Q_(*value_alt)
             elif values[0] == 'nan':
                 quantity = Q_(np.nan, ''.join(values[1:]))
