@@ -692,7 +692,6 @@ class DataPoint(object):
                     if not isabs(filename):
                         filename = join(directory, filename)
                     values = np.genfromtxt(filename, delimiter=',')
-
                 time_history = TimeHistory(
                     time=Q_(values[:, time_col], time_units),
                     quantity=Q_(values[:, quant_col], quant_units),
@@ -734,6 +733,8 @@ class DataPoint(object):
                 quant = Q_(np.nan, ''.join(values[1:]))
             else:
                 quant = Q_(properties[0])
+        elif properties[0] is None:
+            quant = Q_(np.nan)
         else:
             quant = Q_(properties[0])
         if len(properties) > 1:
@@ -744,7 +745,11 @@ class DataPoint(object):
             uncertainty_type = unc.get('uncertainty-type')
             if uncertainty_type == 'relative':
                 if uncertainty:
-                    quant = quant.plus_minus(float(uncertainty), relative=True)
+                    if '%' in str(uncertainty):
+                        val = float(uncertainty.strip('%')) / 100
+                        quant = quant.plus_minus(val, relative=True)
+                    else:
+                        quant = quant.plus_minus(float(uncertainty), relative=True)
                 elif upper_uncertainty and lower_uncertainty:
                     warn('Asymmetric uncertainties are not supported. The '
                          'maximum of lower-uncertainty and upper-uncertainty '
