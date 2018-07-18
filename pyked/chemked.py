@@ -744,13 +744,13 @@ class DataPoint(object):
             lower_uncertainty = unc.get('lower-uncertainty', False)
             uncertainty_type = unc.get('uncertainty-type')
             if uncertainty_type == 'relative':
-                if uncertainty:
+                if uncertainty is not False:
                     if '%' in str(uncertainty):
                         val = float(uncertainty.strip('%')) / 100
                         quant = quant.plus_minus(val, relative=True)
                     else:
                         quant = quant.plus_minus(float(uncertainty), relative=True)
-                elif upper_uncertainty and lower_uncertainty:
+                elif upper_uncertainty is not False and lower_uncertainty is not False:
                     warn('Asymmetric uncertainties are not supported. The '
                          'maximum of lower-uncertainty and upper-uncertainty '
                          'has been used as the symmetric uncertainty.')
