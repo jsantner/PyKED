@@ -13,8 +13,9 @@ from itertools import chain
 import numpy as np
 
 # Local imports
-from .validation import schema, OurValidator, yaml, Q_
+from .validation import schema, OurValidator, yaml
 from .converters import datagroup_properties, ReSpecTh_to_ChemKED
+from . import Q_
 
 VolumeHistory = namedtuple('VolumeHistory', ['time', 'volume'])
 VolumeHistory.__doc__ = 'Time history of the volume in an RCM experiment. Deprecated, to be removed after PyKED 0.4'  # noqa: E501

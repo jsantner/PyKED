@@ -13,7 +13,7 @@ import pint
 
 # Local imports
 from .validation import yaml, property_units, crossref_api
-from .validation import units as unit_registry
+from . import units as unit_registry
 from ._version import __version__
 from . import chemked
 

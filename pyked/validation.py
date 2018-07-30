@@ -12,12 +12,7 @@ from requests.exceptions import HTTPError, ConnectionError
 from cerberus import Validator, SchemaError
 import habanero
 from .orcid import search_orcid
-
-units = pint.UnitRegistry()
-"""Unit registry to contain the units used in PyKED"""
-
-units.define('cm3 = centimeter**3')
-Q_ = units.Quantity
+from . import Q_
 
 crossref_api = habanero.Crossref(mailto='prometheus@pr.omethe.us')
 
